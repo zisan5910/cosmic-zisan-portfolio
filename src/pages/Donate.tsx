@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
-import { Wallet, CreditCard, AlertCircle, Copy, Check } from 'lucide-react';
-import PageHeader from '@/components/PageHeader';
+import { Wallet, CreditCard, AlertCircle, Copy, Check, HeartHandshake } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -47,123 +46,146 @@ export default function Donate() {
     });
   };
 
+  const instructions = [
+    'পছন্দের পেমেন্ট পদ্ধতি নির্বাচন করুন',
+    'প্রদত্ত নম্বরে অনুদানের পরিমাণ পাঠান',
+    'লেনদেন আইডি সংরক্ষণ করুন',
+    'অনুদান ফর্মটি পূরণ করুন'
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <PageHeader
-        title="আর্থিক অনুদান"
-        description="আর্থিক সহায়তা প্রদানের মাধ্যমে আমাদের মিশনকে সমর্থন করুন"
-      />
-
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-3xl mx-auto">
-          <Card className="mb-6 shadow-sm border">
-            <CardHeader className="pb-4">
-              <div className="flex items-center gap-2">
-                <Wallet className="h-5 w-5 text-blood-600" />
-                <CardTitle className="text-lg">কিভাবে অনুদান দেবেন</CardTitle>
-              </div>
-              <CardDescription className="text-sm">
-                অনুদান প্রদানের জন্য এই ধাপগুলি অনুসরণ করুন
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {paymentMethods.map((method) => (
-                    <div
-                      key={method.id}
-                      className="bg-gray-50 rounded-lg p-4 text-center border"
-                    >
-                      <img
-                        src={method.logo}
-                        alt={method.name}
-                        className="h-8 mx-auto mb-2 object-contain"
-                      />
-                      <h3 className="font-medium text-base mb-2">
-                        {method.name}
-                      </h3>
-                      <div className="flex items-center justify-center gap-2">
-                        <p className="text-sm text-gray-600">{method.number}</p>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => handleCopyNumber(method.number)}
-                          className="h-6 w-6"
-                        >
-                          {copiedNumber === method.number ? (
-                            <Check className="h-3 w-3 text-green-600" />
-                          ) : (
-                            <Copy className="h-3 w-3" />
-                          )}
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                  <div className="flex items-start gap-2">
-                    <AlertCircle className="h-4 w-4 text-blue-600 mt-0.5" />
-                    <div>
-                      <h4 className="font-medium text-blue-900 text-sm">
-                        পেমেন্ট নির্দেশাবলী:
-                      </h4>
-                      <ol className="mt-2 text-xs text-blue-800 space-y-1">
-                        <li>১. পছন্দের পেমেন্ট পদ্ধতি নির্বাচন করুন</li>
-                        <li>২. প্রদত্ত নম্বরে অনুদানের পরিমাণ পাঠান</li>
-                        <li>৩. লেনদেন আইডি সংরক্ষণ করুন</li>
-                        <li>৪. অনুদান ফর্মটি পূরণ করুন</li>
-                      </ol>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="mb-6 shadow-sm border">
-            <CardHeader className="pb-4">
-              <div className="flex items-center gap-2">
-                <CreditCard className="h-5 w-5 text-blood-600" />
-                <CardTitle className="text-lg">অনুদানের বিবৃতি জমা দিন</CardTitle>
-              </div>
-              <CardDescription className="text-sm">
-                অনুদান সম্পূর্ণ করতে ফর্মটি পূরণ করুন
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button className="w-full h-12" asChild>
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSeRg5unKNOp5OAalKuoPS0FZ2y1W7TUEt5MXvhUKIv-lnt7NA/viewform"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  অনুদান ফর্ম খুলুন
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-
-          <div className="text-center text-gray-600 bg-white rounded-lg shadow-sm border p-4">
-            <p className="text-sm mb-2">অনুদান সম্পর্কিত কোন প্রশ্ন থাকলে যোগাযোগ করুন:</p>
-            <div className="flex items-center justify-center gap-2 mb-1">
-              <p className="font-medium text-sm">ফোন: ০১৭২২-৫২৮১৬৪</p>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => handleCopyNumber('01722-528164')}
-                className="h-6 w-6"
-              >
-                {copiedNumber === '01722-528164' ? (
-                  <Check className="h-3 w-3 text-green-600" />
-                ) : (
-                  <Copy className="h-3 w-3" />
-                )}
-              </Button>
+      {/* Header */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="container mx-auto px-4 py-6">
+          <div className="text-center">
+            <div className="w-16 h-16 bg-blood-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <HeartHandshake className="h-8 w-8 text-blood-600" />
             </div>
-            <p className="font-medium text-sm">ইমেইল: bobdo5800@gmail.com</p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">আর্থিক অনুদান</h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              আর্থিক সহায়তা প্রদানের মাধ্যমে আমাদের মিশনকে সমর্থন করুন
+            </p>
           </div>
         </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-8 space-y-8">
+        {/* Payment Methods */}
+        <Card className="shadow-md border-0">
+          <CardHeader className="text-center">
+            <div className="w-12 h-12 bg-blood-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+              <Wallet className="h-6 w-6 text-blood-600" />
+            </div>
+            <CardTitle className="text-xl">কিভাবে অনুদান দেবেন</CardTitle>
+            <CardDescription>
+              অনুদান প্রদানের জন্য এই ধাপগুলি অনুসরণ করুন
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {paymentMethods.map((method) => (
+                <div
+                  key={method.id}
+                  className="bg-gray-50 rounded-xl p-4 text-center"
+                >
+                  <img
+                    src={method.logo}
+                    alt={method.name}
+                    className="h-10 mx-auto mb-3 object-contain"
+                  />
+                  <h3 className="font-semibold text-gray-900 mb-2">
+                    {method.name}
+                  </h3>
+                  <div className="flex items-center justify-center gap-2">
+                    <p className="text-sm text-gray-600">{method.number}</p>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleCopyNumber(method.number)}
+                      className="h-8 w-8"
+                    >
+                      {copiedNumber === method.number ? (
+                        <Check className="h-4 w-4 text-green-600" />
+                      ) : (
+                        <Copy className="h-4 w-4" />
+                      )}
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <Card className="bg-blue-50 border-blue-200">
+              <CardContent className="p-4">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-semibold text-blue-900 mb-2">
+                      পেমেন্ট নির্দেশাবলী:
+                    </h4>
+                    <ol className="space-y-1 text-sm text-blue-800">
+                      {instructions.map((instruction, index) => (
+                        <li key={index}>
+                          {index + 1}. {instruction}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </CardContent>
+        </Card>
+
+        {/* Donation Form */}
+        <Card className="shadow-md border-0 bg-gradient-to-r from-blood-50 to-pink-50 border-blood-200">
+          <CardHeader className="text-center">
+            <div className="w-12 h-12 bg-blood-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+              <CreditCard className="h-6 w-6 text-blood-600" />
+            </div>
+            <CardTitle className="text-xl text-blood-900">অনুদানের বিবৃতি জমা দিন</CardTitle>
+            <CardDescription className="text-blood-800">
+              অনুদান সম্পূর্ণ করতে ফর্মটি পূরণ করুন
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-center">
+            <Button className="h-12 px-8 bg-blood-600 hover:bg-blood-700 rounded-xl shadow-md" asChild>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeRg5unKNOp5OAalKuoPS0FZ2y1W7TUEt5MXvhUKIv-lnt7NA/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                অনুদান ফর্ম খুলুন
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Contact Information */}
+        <Card className="shadow-md border-0">
+          <CardContent className="p-6 text-center">
+            <p className="text-gray-600 mb-4">অনুদান সম্পর্কিত কোন প্রশ্ন থাকলে যোগাযোগ করুন:</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex items-center justify-center gap-2">
+                <span className="font-medium text-gray-900">ফোন: ০১৭২২-৫২৮১৬৪</span>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => handleCopyNumber('01722-528164')}
+                  className="h-6 w-6"
+                >
+                  {copiedNumber === '01722-528164' ? (
+                    <Check className="h-3 w-3 text-green-600" />
+                  ) : (
+                    <Copy className="h-3 w-3" />
+                  )}
+                </Button>
+              </div>
+              <span className="font-medium text-gray-900">ইমেইল: bobdo5800@gmail.com</span>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

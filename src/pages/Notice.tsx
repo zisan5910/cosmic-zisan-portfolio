@@ -1,46 +1,38 @@
+
 import React from 'react';
-import { Bell, Calendar, AlertTriangle, Info } from 'lucide-react';
-import PageHeader from '@/components/PageHeader';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Bell, Calendar, AlertTriangle, Info, MessageCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Notice = () => {
-  // Sample notices data - in a real application, this would come from an API
   const notices = [
     {
       id: 1,
       title: 'রক্তের সংকট',
       category: 'urgent',
-      content:
-        'বর্তমানে আমরা রক্তের গুরুতর সংকটে আছি। রক্তদাতাদের অবিলম্বে প্রয়োজন। আপনি যদি রক্তদানের জন্য উপযুক্ত হন তবে দয়া করে আমাদের যে কোন দান কেন্দ্রে যত দ্রুত সম্ভব আসুন।',
+      date: '২৫ ডিসেম্বর, ২০২৪',
+      content: 'বর্তমানে আমরা রক্তের গুরুতর সংকটে আছি। রক্তদাতাদের অবিলম্বে প্রয়োজন। আপনি যদি রক্তদানের জন্য উপযুক্ত হন তবে দয়া করে আমাদের যে কোন দান কেন্দ্রে যত দ্রুত সম্ভব আসুন।',
     },
     {
       id: 2,
-      title: ' আরো স্বেচ্ছাসেবক প্রয়োজন',
+      title: 'আরো স্বেচ্ছাসেবক প্রয়োজন',
       category: 'announcement',
-      content:
-        ' আমাদের এই মিশনে কাজ করতে আরও বেশি স্বেচ্ছাসেবক এর প্রয়োজন। যারা আগ্রহী আছেন তারা দয়া করে আমাদের সাথে যোগাযোগ করুন ধন্যবাদ।',
+      date: '২০ ডিসেম্বর, ২০২৪',
+      content: 'আমাদের এই মিশনে কাজ করতে আরও বেশি স্বেচ্ছাসেবক এর প্রয়োজন। যারা আগ্রহী আছেন তারা দয়া করে আমাদের সাথে যোগাযোগ করুন ধন্যবাদ।',
     },
     {
       id: 3,
-      title: '  মাসিক মিটিংয়ে উপস্থিত হওয়ার জন্য অনুরোধ',
+      title: 'মাসিক মিটিংয়ে উপস্থিত হওয়ার জন্য অনুরোধ',
       category: 'important',
-      content:
-        '  স্বেচ্ছাসেবকগণ আপনাদের জন্য প্রতি মাসে যে মাসিক মিটিং এর ব্যবস্থা করা হয় তাতে দয়া করে উপস্থিত থাকবেন এবং মাসিক ভাতা প্রদান করবেন',
+      date: '১৮ ডিসেম্বর, ২০২৪',
+      content: 'স্বেচ্ছাসেবকগণ আপনাদের জন্য প্রতি মাসে যে মাসিক মিটিং এর ব্যবস্থা করা হয় তাতে দয়া করে উপস্থিত থাকবেন এবং মাসিক ভাতা প্রদান করবেন',
     },
-
     {
-      id: 5,
+      id: 4,
       title: 'আমাদের দাতাদের ধন্যবাদ',
-      date: '১৫ মার্চ, ২০২৫',
+      date: '১৫ ডিসেম্বর, ২০২৪',
       category: 'announcement',
-      content:
-        'আমরা আমাদের বসন্তকালীন রক্তদান শিবিরে অংশগ্রহণকারী সকল দাতাদের আন্তরিক ধন্যবাদ জানাতে চাই। আপনার উদারতার জন্য আমরা ৫০০ ইউনিটেরও বেশি রক্ত সংগ্রহ করতে পেরেছি যা প্রায় ১,৫০০ জীবন বাঁচাতে সাহায্য করবে!',
+      content: 'আমরা আমাদের বসন্তকালীন রক্তদান শিবিরে অংশগ্রহণকারী সকল দাতাদের আন্তরিক ধন্যবাদ জানাতে চাই। আপনার উদারতার জন্য আমরা ৫০০ ইউনিটেরও বেশি রক্ত সংগ্রহ করতে পেরেছি যা প্রায় ১,৫০০ জীবন বাঁচাতে সাহায্য করবে!',
     },
   ];
 
@@ -84,87 +76,93 @@ const Notice = () => {
   };
 
   return (
-    <div>
-      <PageHeader
-        title="নোটিশ ও ঘোষণা"
-        description="গুরুত্বপূর্ণ রক্তদান সংবাদ, ইভেন্ট এবং জরুরি আবেদন সম্পর্কে আপডেট থাকুন।"
-      />
-
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto mb-12">
-          <div className="flex items-center justify-center mb-8">
-            <Bell className="h-8 w-8 text-blood-600 mr-3" />
-            <h2 className="text-2xl font-bold">সর্বশেষ নোটিশ</h2>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="container mx-auto px-4 py-6">
+          <div className="text-center">
+            <div className="w-16 h-16 bg-blood-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <Bell className="h-8 w-8 text-blood-600" />
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">নোটিশ ও ঘোষণা</h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              গুরুত্বপূর্ণ রক্তদান সংবাদ, ইভেন্ট এবং জরুরি আবেদন সম্পর্কে আপডেট থাকুন।
+            </p>
           </div>
+        </div>
+      </div>
 
-          <div className="space-y-6">
-            {notices.map((notice) => (
-              <Card
-                key={notice.id}
-                className="shadow-md hover:shadow-lg transition-shadow"
-              >
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div className="flex items-center">
-                      {getCategoryIcon(notice.category)}
-                      <CardTitle className="ml-2">{notice.title}</CardTitle>
-                    </div>
-                    <span
-                      className={`text-sm px-3 py-1 rounded-full border ${getCategoryClass(
-                        notice.category
-                      )}`}
-                    >
-                      {getCategoryLabel(notice.category)}
-                    </span>
+      <div className="container mx-auto px-4 py-8 space-y-6">
+        {/* Notices */}
+        {notices.map((notice) => (
+          <Card key={notice.id} className="shadow-md border-0 hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3 flex-1">
+                  <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    {getCategoryIcon(notice.category)}
                   </div>
-                  <CardDescription>
-                    {notice.date} তারিখে প্রকাশিত
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700">{notice.content}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+                  <div className="flex-1">
+                    <CardTitle className="text-lg mb-1">{notice.title}</CardTitle>
+                    <p className="text-gray-600 text-sm">{notice.date}</p>
+                  </div>
+                </div>
+                <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getCategoryClass(notice.category)}`}>
+                  {getCategoryLabel(notice.category)}
+                </span>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-700 leading-relaxed">{notice.content}</p>
+            </CardContent>
+          </Card>
+        ))}
 
-        <div className="bg-blood-50 rounded-lg p-8 mb-12">
-          <h2 className="text-xl font-bold mb-4 text-center">
-            নোটিফিকেশন সাবস্ক্রাইব করুন
-          </h2>
-          <p className="text-center text-gray-700 mb-6">
-            সর্বশেষ সংবাদ, জরুরি আবেদন এবং রক্তদান শিবির সম্পর্কে আপডেট পেতে
-            আমাদের নোটিফিকেশন সার্ভিস সাবস্ক্রাইব করুন।
-          </p>
-          <div className="flex justify-center">
-            <a
-              href="https://youtube.com/@BograOnlineBloodDonationOrgani"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-blood-600 hover:bg-blood-700 text-white px-6 py-3 rounded-md transition-colors flex items-center"
-            >
-              <Bell className="h-5 w-5 mr-2" />
-              এখনই সাবস্ক্রাইব করুন
-            </a>
-          </div>
-        </div>
+        {/* Subscribe Section */}
+        <Card className="bg-gradient-to-r from-blood-50 to-pink-50 border-blood-200 shadow-md">
+          <CardContent className="p-8 text-center">
+            <div className="w-16 h-16 bg-blood-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <MessageCircle className="h-8 w-8 text-blood-600" />
+            </div>
+            <h2 className="text-xl font-bold text-blood-900 mb-3">নোটিফিকেশন সাবস্ক্রাইব করুন</h2>
+            <p className="text-blood-800 mb-6 max-w-md mx-auto">
+              সর্বশেষ সংবাদ, জরুরি আবেদন এবং রক্তদান শিবির সম্পর্কে আপডেট পেতে আমাদের চ্যানেল সাবস্ক্রাইব করুন।
+            </p>
+            <Button asChild className="h-12 px-8 bg-blood-600 hover:bg-blood-700 rounded-xl shadow-md">
+              <a
+                href="https://youtube.com/@BograOnlineBloodDonationOrgani"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                এখনই সাবস্ক্রাইব করুন
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
 
-        <div className="text-center">
-          <h3 className="font-semibold text-lg mb-3">
-            আরও তথ্যের জন্য যোগাযোগ করুন
-          </h3>
-          <p className="text-gray-700">
-            এই নোটিশ সম্পর্কে আরও বিস্তারিত জানতে আমাদের তথ্য ডেস্কে যোগাযোগ
-            করুন:
-          </p>
-          <p className="text-gray-700 mt-2">
-            <span className="font-medium">ফোন:</span> 01722-528164
-          </p>
-          <p className="text-gray-700">
-            <span className="font-medium">ইমেইল:</span> bobdo5800@gmail.com
-          </p>
-        </div>
+        {/* Contact Information */}
+        <Card className="shadow-md border-0">
+          <CardContent className="p-6 text-center">
+            <h3 className="text-lg font-bold text-gray-900 mb-3">আরও তথ্যের জন্য যোগাযোগ করুন</h3>
+            <p className="text-gray-600 mb-4">
+              এই নোটিশ সম্পর্কে আরও বিস্তারিত জানতে আমাদের তথ্য ডেস্কে যোগাযোগ করুন:
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href="tel:01722528164"
+                className="flex items-center justify-center gap-2 bg-blood-600 text-white px-6 py-3 rounded-xl hover:bg-blood-700 transition-colors font-medium"
+              >
+                ফোন: ০১৭২২-৫২৮১৬৪
+              </a>
+              <a
+                href="mailto:bobdo5800@gmail.com"
+                className="flex items-center justify-center gap-2 bg-blood-100 text-blood-700 px-6 py-3 rounded-xl hover:bg-blood-200 transition-colors font-medium"
+              >
+                ইমেইল: bobdo5800@gmail.com
+              </a>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

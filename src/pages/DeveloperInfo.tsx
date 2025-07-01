@@ -1,115 +1,121 @@
 
 import React from 'react';
-import { ExternalLink, Github, Linkedin, Mail, Globe } from 'lucide-react';
-import PageHeader from '@/components/PageHeader';
+import { ExternalLink, Github, Linkedin, Mail, Globe, Code, User } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const DeveloperInfo = () => {
+  const skills = [
+    { category: 'Frontend', skills: 'React, TypeScript, Tailwind CSS' },
+    { category: 'Backend', skills: 'Node.js, Express, PostgreSQL' },
+    { category: 'Tools', skills: 'Git, VS Code, Figma' },
+  ];
+
+  const socialLinks = [
+    { name: 'GitHub', url: 'https://github.com/ridoan01', icon: <Github className="w-5 h-5" /> },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ridoan-zisan', icon: <Linkedin className="w-5 h-5" /> },
+    { name: 'Email', url: 'mailto:ridoan.zisan@gmail.com', icon: <Mail className="w-5 h-5" /> },
+    { name: 'Portfolio', url: 'https://ridoan-zisan.netlify.app', icon: <Globe className="w-5 h-5" /> },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <PageHeader 
-        title="Developer Information" 
-        description="Meet the developer behind BOBDO's web platform"
-      />
+      {/* Header */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="container mx-auto px-4 py-6">
+          <div className="text-center">
+            <div className="w-16 h-16 bg-blood-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <Code className="h-8 w-8 text-blood-600" />
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Developer Information</h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Meet the developer behind BOBDO's web platform
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div className="container mx-auto px-4 py-8">
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-            <div className="relative h-32 bg-gradient-to-r from-blue-500 to-purple-600">
+        <div className="max-w-3xl mx-auto space-y-8">
+          {/* Profile Card */}
+          <Card className="shadow-md border-0 overflow-hidden">
+            <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600 relative">
               <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
                 <img
                   src="/bobdo.png"
                   alt="Developer"
-                  className="w-24 h-24 rounded-full border-4 border-white"
+                  className="w-24 h-24 rounded-2xl border-4 border-white shadow-lg"
                 />
               </div>
             </div>
             
-            <div className="pt-16 pb-6 px-6 text-center">
-              <h2 className="text-xl font-bold text-gray-900">Ridoan Zisan</h2>
-              <p className="text-gray-600 mt-1 text-sm">Full Stack Developer</p>
+            <CardContent className="pt-16 pb-6 text-center">
+              <h2 className="text-2xl font-bold text-gray-900 mb-1">Ridoan Zisan</h2>
+              <p className="text-blood-600 mb-4">Full Stack Developer</p>
               
-              <div className="mt-4 flex justify-center space-x-3">
-                <a
-                  href="https://github.com/ridoan01"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/ridoan-zisan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a
-                  href="mailto:ridoan.zisan@gmail.com"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  <Mail className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://ridoan-zisan.netlify.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  <Globe className="w-5 h-5" />
-                </a>
+              <div className="flex justify-center gap-3 mb-6">
+                {socialLinks.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-gray-100 hover:bg-blood-100 rounded-xl flex items-center justify-center text-gray-600 hover:text-blood-600 transition-colors"
+                  >
+                    {link.icon}
+                  </a>
+                ))}
               </div>
 
-              <div className="mt-6">
+              <Button asChild className="h-12 px-8 bg-blood-600 hover:bg-blood-700 rounded-xl shadow-md">
                 <a
                   href="https://ridoan-zisan.netlify.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors text-sm"
                 >
                   Visit Portfolio
                   <ExternalLink className="ml-2 w-4 h-4" />
                 </a>
-              </div>
-            </div>
+              </Button>
+            </CardContent>
+          </Card>
 
-            <div className="border-t border-gray-200 px-6 py-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">About the Developer</h3>
-              <p className="text-gray-600 mb-3 text-sm">
+          {/* About Section */}
+          <Card className="shadow-md border-0">
+            <CardHeader>
+              <div className="w-12 h-12 bg-blood-100 rounded-xl flex items-center justify-center mb-3">
+                <User className="h-6 w-6 text-blood-600" />
+              </div>
+              <CardTitle className="text-xl">About the Developer</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-gray-600 leading-relaxed">
                 Ridoan Zisan is a passionate Full Stack Developer with expertise in modern web technologies. 
                 He developed the BOBDO web platform using React, TypeScript, and Tailwind CSS.
               </p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 leading-relaxed">
                 With a focus on creating impactful solutions, Ridoan combines technical expertise with a 
                 deep understanding of user needs to build applications that make a difference in people's lives.
               </p>
-            </div>
+            </CardContent>
+          </Card>
 
-            <div className="bg-gray-50 px-6 py-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Technical Skills</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div className="bg-white p-3 rounded-lg shadow-sm border">
-                  <h4 className="font-medium text-gray-900 text-sm">Frontend</h4>
-                  <p className="text-gray-600 text-xs mt-1">
-                    React, TypeScript, Tailwind CSS
-                  </p>
-                </div>
-                <div className="bg-white p-3 rounded-lg shadow-sm border">
-                  <h4 className="font-medium text-gray-900 text-sm">Backend</h4>
-                  <p className="text-gray-600 text-xs mt-1">
-                    Node.js, Express, PostgreSQL
-                  </p>
-                </div>
-                <div className="bg-white p-3 rounded-lg shadow-sm border">
-                  <h4 className="font-medium text-gray-900 text-sm">Tools</h4>
-                  <p className="text-gray-600 text-xs mt-1">
-                    Git, VS Code, Figma
-                  </p>
-                </div>
+          {/* Technical Skills */}
+          <Card className="shadow-md border-0">
+            <CardHeader>
+              <CardTitle className="text-xl">Technical Skills</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {skills.map((skill, index) => (
+                  <div key={index} className="bg-gray-50 rounded-xl p-4">
+                    <h4 className="font-semibold text-gray-900 mb-2">{skill.category}</h4>
+                    <p className="text-gray-600 text-sm">{skill.skills}</p>
+                  </div>
+                ))}
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
