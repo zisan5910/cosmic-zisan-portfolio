@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Heart, Users, Search, Plus, Building2, Award, HeartHandshake, Bell, Info, Phone, Home, Droplet } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navigationItems = [
@@ -30,7 +31,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blood-600 rounded-xl flex items-center justify-center shadow-md">
+            <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center shadow-md">
               <Heart className="h-6 w-6 text-white" />
             </div>
             <div className="hidden sm:block">
@@ -47,8 +48,8 @@ const Header = () => {
                 to={item.path}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActive(item.path)
-                    ? 'bg-blood-600 text-white shadow-md'
-                    : 'text-gray-700 hover:bg-gray-100 hover:text-blood-600'
+                    ? 'bg-red-600 text-white shadow-md'
+                    : 'text-gray-700 hover:bg-gray-100 hover:text-red-600'
                 }`}
               >
                 {item.icon}
@@ -57,41 +58,69 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden w-10 h-10 rounded-xl"
-          >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
-        </div>
+          {/* Mobile Menu */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden w-10 h-10 rounded-xl"
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-80 p-0">
+              <div className="flex flex-col h-full">
+                {/* Header */}
+                <div className="p-6 border-b bg-red-50">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center shadow-md">
+                      <Heart className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-bold text-gray-900">BOBDO</h2>
+                      <p className="text-sm text-gray-600">রক্তদান সংগঠন</p>
+                    </div>
+                  </div>
+                </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden absolute top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
-            <div className="container mx-auto px-4 py-4">
-              <div className="grid grid-cols-2 gap-2">
-                {navigationItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`flex items-center gap-3 p-3 rounded-xl text-sm font-medium transition-all duration-200 ${
-                      isActive(item.path)
-                        ? 'bg-blood-600 text-white shadow-md'
-                        : 'bg-gray-50 text-gray-700 hover:bg-blood-50 hover:text-blood-600'
-                    }`}
-                  >
-                    {item.icon}
-                    <span>{item.name}</span>
-                  </Link>
-                ))}
+                {/* Navigation Items */}
+                <div className="flex-1 p-4 overflow-y-auto">
+                  <div className="space-y-2">
+                    {navigationItems.map((item) => (
+                      <Link
+                        key={item.path}
+                        to={item.path}
+                        onClick={() => setIsOpen(false)}
+                        className={`flex items-center gap-3 p-4 rounded-xl text-sm font-medium transition-all duration-200 ${
+                          isActive(item.path)
+                            ? 'bg-red-600 text-white shadow-md'
+                            : 'bg-gray-50 text-gray-700 hover:bg-red-50 hover:text-red-600'
+                        }`}
+                      >
+                        {item.icon}
+                        <span>{item.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className="p-4 border-t bg-gray-50">
+                  <div className="text-center">
+                    <p className="text-xs text-gray-600 mb-2">জরুরি সেবা</p>
+                    <a
+                      href="tel:01722528164"
+                      className="text-red-600 font-semibold text-sm"
+                    >
+                      ০১৭২২-৫২৮১৬৪
+                    </a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        )}
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );
