@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Heart, Users, BookOpen, Facebook, Droplet, Award, Building2, HandHeart, HeartHandshake, Phone, Mail, Search, Plus, Shield, Star, Clock, MapPin } from 'lucide-react';
+import { ArrowRight, Heart, Users, Search, Plus, Award, Building2, HeartHandshake, Phone, Mail, Clock, MapPin, Shield, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -65,11 +65,11 @@ const Home = () => {
       title: 'জরুরি তথ্য',
       description: 'রক্তের জরুরি প্রয়োজনে যোগাযোগ করুন',
       icon: <Phone className="h-5 w-5 text-red-600" />,
-      content: '০১৭২২-৫২৮১৬ৄ
+      content: '০১৭২২-৫২৮১৬৪'
     },
     {
       title: 'সেবার সময়',
-      description: '২৪ ঘণ্টা সেবা প্রদান',
+      description: '২ৄ ঘণ্টা সেবা প্রদান',
       icon: <Clock className="h-5 w-5 text-blue-600" />,
       content: '২৪/৭ উপলব্ধ'
     },
@@ -124,28 +124,6 @@ const Home = () => {
                   রক্তদাতা হোন
                 </Link>
               </Button>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex justify-center gap-4">
-              <a 
-                href="https://www.facebook.com/groups/BOBO.BD" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all text-sm font-medium text-gray-700 hover:text-red-600"
-              >
-                <Facebook className="h-4 w-4" />
-                গ্রুপ
-              </a>
-              <a 
-                href="https://www.facebook.com/bobdo.official" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all text-sm font-medium text-gray-700 hover:text-red-600"
-              >
-                <Facebook className="h-4 w-4" />
-                পেজ
-              </a>
             </div>
           </div>
         </div>
@@ -263,27 +241,6 @@ const Home = () => {
                 <p className="text-sm text-gray-600">তাৎক্ষণিক উত্তর</p>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="bg-gradient-to-r from-red-600 to-red-700 text-white py-12">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <BookOpen className="h-12 w-12 mx-auto mb-4" />
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              চিকিৎসা জ্ঞান অর্জন করুন
-            </h2>
-            <p className="text-lg mb-8 opacity-90">
-              রক্তদান ও প্রাথমিক চিকিৎসা সম্পর্কে বিস্তারিত জানুন এবং অন্যদের সাহায্য করুন
-            </p>
-            <Button asChild size="lg" variant="secondary" className="shadow-lg rounded-xl">
-              <Link to="/medical-knowledge" className="flex items-center gap-2">
-                বিস্তারিত জানুন
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-            </Button>
           </div>
         </div>
       </section>
