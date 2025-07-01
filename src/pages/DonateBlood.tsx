@@ -1,197 +1,187 @@
+
 import React from 'react';
-import { Droplet, Clock, CheckCircle, XCircle } from 'lucide-react';
-import PageHeader from '@/components/PageHeader';
-import FormCard from '@/components/FormCard';
+import { Heart, Shield, Clock, CheckCircle, AlertCircle, Phone, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const DonateBlood = () => {
+  const requirements = [
+    { text: 'বয়স ১৮-৬৫ বছর', icon: <CheckCircle className="h-5 w-5 text-green-600" /> },
+    { text: 'ওজন ৫০ কেজি বা তার বেশি', icon: <CheckCircle className="h-5 w-5 text-green-600" /> },
+    { text: 'সুস্থ ও সবল', icon: <CheckCircle className="h-5 w-5 text-green-600" /> },
+    { text: 'শেষ রক্তদানের ৩ মাস পর', icon: <CheckCircle className="h-5 w-5 text-green-600" /> },
+  ];
+
+  const benefits = [
+    { title: 'স্বাস্থ্য উন্নতি', description: 'নিয়মিত রক্তদান স্বাস্থ্যের জন্য ভাল', icon: <Heart className="h-6 w-6 text-red-600" /> },
+    { title: 'জীবন বাঁচান', description: 'একটি রক্তদানে ৩টি জীবন বাঁচানো যায়', icon: <Shield className="h-6 w-6 text-blue-600" /> },
+    { title: 'সামাজিক দায়বদ্ধতা', description: 'সমাজের প্রতি আপনার অবদান', icon: <Clock className="h-6 w-6 text-green-600" /> },
+  ];
+
+  const steps = [
+    { step: '১', title: 'নিবন্ধন', description: 'ফর্ম পূরণ করুন' },
+    { step: '২', title: 'স্বাস্থ্য পরীক্ষা', description: 'সংক্ষিপ্ত চেকআপ' },
+    { step: '৩', title: 'রক্তদান', description: '১০-১৫ মিনিট সময়' },
+    { step: '৪', title: 'বিশ্রাম', description: 'হালকা খাবার ও বিশ্রাম' },
+  ];
+
   return (
-    <div>
-      <PageHeader
-        title="রক্ত দিন"
-        description="আপনার রক্তদান তিনটি জীবন বাঁচাতে পারে। আজই একজন জীবনদাতা হওয়ার প্রথম পদক্ষেপ নিন।"
-      />
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="max-w-6xl mx-auto px-4 py-6">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">রক্তদাতা হোন</h1>
+            <p className="text-gray-600">একটি রক্তদানে তিনটি জীবন বাঁচান</p>
+          </div>
+        </div>
+      </div>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-2xl font-bold mb-6">কেন রক্ত দেবেন?</h2>
-          <p className="text-gray-700 mb-4">
-            রক্ত কৃত্রিমভাবে তৈরি করা যায় না - এটি শুধুমাত্র উদার দাতাদের কাছ
-            থেকেই আসে। প্রতিদিন, রক্তদান দুর্ঘটনায় পড়া লোকদের, অস্ত্রোপচার
-            করানো রোগীদের, ক্যান্সার ও অন্যান্য রোগের চিকিৎসা নেওয়া ব্যক্তিদের
-            জীবন বাঁচাতে সাহায্য করে।
-          </p>
-          <p className="text-gray-700 mb-4">
-            একটি মাত্র গাড়ি দুর্ঘটনার শিকার ব্যক্তির ১০০ ইউনিট পর্যন্ত রক্তের
-            প্রয়োজন হতে পারে। আপনার দান নিশ্চিত করতে পারে যে প্রয়োজন হলে রক্ত
-            পাওয়া যাবে।
-          </p>
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <Card className="mb-8 bg-gradient-to-r from-red-600 to-pink-600 text-white border-0">
+          <CardContent className="p-8 text-center">
+            <Heart className="h-16 w-16 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold mb-4">রক্তদানে এগিয়ে আসুন</h2>
+            <p className="text-lg mb-6 opacity-90">
+              আপনার একটি রক্তদান কারো জীবন বাঁচাতে পারে
+            </p>
+            <Button asChild className="bg-white text-red-600 hover:bg-red-50 h-12 px-8">
+              <a
+                href="https://www.facebook.com/groups/BOBO.BD"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                এখনই যোগদান করুন
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Requirements */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">রক্তদানের যোগ্যতা</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="border-0 shadow-md">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  প্রয়োজনীয় শর্ত
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {requirements.map((req, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      {req.icon}
+                      <span className="text-gray-700">{req.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-md">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <AlertCircle className="h-5 w-5 text-orange-600" />
+                  সতর্কতা
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3 text-gray-700">
+                  <p>• কোনো সংক্রামক রোগ না থাকা</p>
+                  <p>• গর্ভবতী মহিলাদের রক্তদান করা যাবে না</p>
+                  <p>• ওষুধ সেবনের ক্ষেত্রে ডাক্তারের পরামর্শ নিন</p>
+                  <p>• রক্তদানের আগে পর্যাপ্ত ঘুম ও খাবার গ্রহণ করুন</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8 mb-16">
-          <h2 className="text-2xl font-bold mb-6 text-center">দাতার যোগ্যতা</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="font-bold text-lg flex items-center mb-4">
-                <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-                সাধারণ প্রয়োজনীয়তা
+        {/* Benefits */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">রক্তদানের উপকারিতা</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {benefits.map((benefit, index) => (
+              <Card key={index} className="border-0 shadow-md text-center">
+                <CardContent className="p-6">
+                  <div className="mb-4">{benefit.icon}</div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
+                  <p className="text-gray-600">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Process */}
+        <div className="mb-8">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">রক্তদানের প্রক্রিয়া</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {steps.map((step, index) => (
+              <Card key={index} className="border-0 shadow-md text-center">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+                    {step.step}
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-gray-600">{step.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card className="bg-blue-50 border-blue-200">
+            <CardContent className="p-6 text-center">
+              <h3 className="text-lg font-semibold text-blue-900 mb-2">
+                রক্তদাতা হিসেবে নিবন্ধন
               </h3>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>
-                    অন্তত ১৭ বছর বয়সী হতে হবে (কিছু এলাকায় পিতামাতার সম্মতিতে
-                    ১৬)
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>ওজন কমপক্ষে ১১০ পাউন্ড (৫০ কেজি) হতে হবে</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>সাধারণভাবে সুস্থ থাকতে হবে</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">✓</span>
-                  <span>
-                    স্বাভাবিক রক্তচাপ, নাড়ি, তাপমাত্রা এবং হিমোগ্লোবিন লেভেল
-                    থাকতে হবে
-                  </span>
-                </li>
-              </ul>
-            </div>
+              <p className="text-blue-800 mb-4">
+                আমাদের রক্তদাতা তালিকায় যোগ দিন
+              </p>
+              <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
+                <a
+                  href="https://www.facebook.com/groups/BOBO.BD"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  নিবন্ধন করুন
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
 
-            <div>
-              <h3 className="font-bold text-lg flex items-center mb-4">
-                <XCircle className="h-5 w-5 text-red-500 mr-2" />
-                বিধিনিষেধ
+          <Card className="bg-green-50 border-green-200">
+            <CardContent className="p-6 text-center">
+              <h3 className="text-lg font-semibold text-green-900 mb-2">
+                তথ্য ও সহায়তা
               </h3>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">✗</span>
-                  <span>সাম্প্রতিক অসুস্থতা বা সংক্রমণ</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">✗</span>
-                  <span>গত এক বছরে নির্দিষ্ট কিছু দেশে ভ্রমণ</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">✗</span>
-                  <span>নির্দিষ্ট কিছু ওষুধ সেবন</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">✗</span>
-                  <span>নিম্ন হিমোগ্লোবিন লেভেল</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <p className="mt-6 text-gray-600 text-center">
-            যোগ্যতার প্রয়োজনীয়তা এবং বিধিনিষেধের সম্পূর্ণ তালিকার জন্য, দয়া
-            করে আমাদের মেডিকেল স্টাফের সাথে পরামর্শ করুন।
-          </p>
-        </div>
-
-        <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8 mb-16">
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            রক্তদান প্রক্রিয়া
-          </h2>
-          <div className="space-y-8">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-shrink-0 flex items-start">
-                <div className="bg-blood-100 rounded-full p-3">
-                  <span className="text-blood-600 font-bold">১</span>
-                </div>
+              <p className="text-green-800 mb-4">
+                রক্তদান সম্পর্কে আরো জানতে যোগাযোগ করুন
+              </p>
+              <div className="flex flex-col gap-2">
+                <a
+                  href="tel:01722528164"
+                  className="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  <Phone className="h-4 w-4" />
+                  ০১৭২২-৫২৮১৬৪
+                </a>
+                <a
+                  href="mailto:bobdo5800@gmail.com"
+                  className="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  <Mail className="h-4 w-4" />
+                  bobdo5800@gmail.com
+                </a>
               </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">নিবন্ধন</h3>
-                <p className="text-gray-600">
-                  আপনার ব্যক্তিগত তথ্য এবং চিকিৎসা ইতিহাস সহ দাতা নিবন্ধন ফর্ম
-                  পূরণ করুন।
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-shrink-0 flex items-start">
-                <div className="bg-blood-100 rounded-full p-3">
-                  <span className="text-blood-600 font-bold">২</span>
-                </div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">
-                  স্বাস্থ্য পরীক্ষা
-                </h3>
-                <p className="text-gray-600">
-                  একজন চিকিৎসা পেশাদার আপনার তাপমাত্রা, রক্তচাপ, নাড়ি এবং
-                  হিমোগ্লোবিনের মাত্রা পরীক্ষা করবেন।
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-shrink-0 flex items-start">
-                <div className="bg-blood-100 rounded-full p-3">
-                  <span className="text-blood-600 font-bold">৩</span>
-                </div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">রক্তদান</h3>
-                <p className="text-gray-600">
-                  প্রকৃত রক্তদান প্রক্রিয়ায় সময় লাগে মাত্র ৮-১০ মিনিট। আপনি
-                  আরামে বসে থাকবেন যখন এক পিন্ট রক্ত নেওয়া হবে।
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-shrink-0 flex items-start">
-                <div className="bg-blood-100 rounded-full p-3">
-                  <span className="text-blood-600 font-bold">৪</span>
-                </div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">পুনরুদ্ধার</h3>
-                <p className="text-gray-600">
-                  দান করার পর, আপনাকে তরল এবং শক্তি পুনরুদ্ধারে সাহায্য করার
-                  জন্য হালকা খাবার দেওয়া হবে। চলে যাওয়ার আগে ১০-১৫ মিনিট
-                  বিশ্রাম নিন।
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-shrink-0 flex items-start">
-                <div className="bg-blood-100 rounded-full p-3">
-                  <span className="text-blood-600 font-bold">৫</span>
-                </div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">
-                  রক্তদানের ফ্রিকোয়েন্সি
-                </h3>
-                <p className="text-gray-600">
-                  আপনি প্রতি ৫৬ দিনে (৮ সপ্তাহ) সম্পূর্ণ রক্ত দান করতে পারেন।
-                  পাওয়ার রেড দান প্রতি ১১২ দিনে করা যেতে পারে।
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-8 text-center">
-            রক্ত দিতে প্রস্তুত?
-          </h2>
-          <div className="max-w-lg mx-auto">
-            <FormCard
-              title=" রক্তদাতা নিবন্ধন"
-              description="এই ফর্মটি পূরণ করে একজন রক্তদাতা হিসেবে নিবন্ধন করুন। আপনার সাথে যোগাযোগ করব।"
-              formLink="https://docs.google.com/forms/d/1FDey9PL2Lr0ScHXB1zwXgIzdHSSjpGQQsL24kwQxWqQ/viewform"
-              buttonText="রেজিস্ট্রেশন করুন"
-              icon={<Droplet className="h-8 w-8" />}
-            />
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
