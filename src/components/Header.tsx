@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Heart, Users, Search, Plus, Building2, Award, HeartHandshake, Bell, Info, Phone, Home, Droplet } from 'lucide-react';
+import { Menu, X, Heart, Users, Search, Plus, Building2, Award, HeartHandshake, Bell, Info, Phone, Home, Droplet, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
@@ -21,6 +21,7 @@ const Header = () => {
     { name: 'নোটিশ', path: '/notice', icon: <Bell className="h-4 w-4" /> },
     { name: 'আমাদের সম্পর্কে', path: '/about-us', icon: <Info className="h-4 w-4" /> },
     { name: 'যোগাযোগ', path: '/contacts', icon: <Phone className="h-4 w-4" /> },
+    { name: 'ডেভেলপার', path: 'https://ridoan-zisan.netlify.app', icon: <Code className="h-4 w-4" />, external: true },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -31,8 +32,12 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center shadow-md">
-              <Heart className="h-6 w-6 text-white" />
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md border">
+              <img 
+                src="https://i.postimg.cc/pVmRddDC/bobdo-removebg-preview.png" 
+                alt="BOBDO Logo" 
+                className="h-8 w-8 object-contain"
+              />
             </div>
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold text-gray-900">BOBDO</h1>
@@ -42,20 +47,46 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navigationItems.slice(0, 6).map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  isActive(item.path)
-                    ? 'bg-red-600 text-white shadow-md'
-                    : 'text-gray-700 hover:bg-gray-100 hover:text-red-600'
-                }`}
-              >
-                {item.icon}
-                <span>{item.name}</span>
-              </Link>
-            ))}
+            {navigationItems.slice(0, 6).map((item) => {
+              if (item.external) {
+                return (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-gray-700 hover:bg-gray-100 hover:text-red-600"
+                  >
+                    {item.icon}
+                    <span>{item.name}</span>
+                  </a>
+                );
+              }
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    isActive(item.path)
+                      ? 'bg-red-600 text-white shadow-md'
+                      : 'text-gray-700 hover:bg-gray-100 hover:text-red-600'
+                  }`}
+                >
+                  {item.icon}
+                  <span>{item.name}</span>
+                </Link>
+              );
+            })}
+            {/* Developer Link in Desktop */}
+            <a
+              href="https://ridoan-zisan.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-gray-700 hover:bg-gray-100 hover:text-red-600"
+            >
+              <Code className="h-4 w-4" />
+              <span>ডেভেলপার</span>
+            </a>
           </nav>
 
           {/* Mobile Menu */}
@@ -74,8 +105,12 @@ const Header = () => {
                 {/* Header */}
                 <div className="p-6 border-b bg-red-50">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center shadow-md">
-                      <Heart className="h-6 w-6 text-white" />
+                    <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md border">
+                      <img 
+                        src="https://i.postimg.cc/pVmRddDC/bobdo-removebg-preview.png" 
+                        alt="BOBDO Logo" 
+                        className="h-8 w-8 object-contain"
+                      />
                     </div>
                     <div>
                       <h2 className="text-lg font-bold text-gray-900">BOBDO</h2>
@@ -87,21 +122,38 @@ const Header = () => {
                 {/* Navigation Items */}
                 <div className="flex-1 p-4 overflow-y-auto">
                   <div className="space-y-2">
-                    {navigationItems.map((item) => (
-                      <Link
-                        key={item.path}
-                        to={item.path}
-                        onClick={() => setIsOpen(false)}
-                        className={`flex items-center gap-3 p-4 rounded-xl text-sm font-medium transition-all duration-200 ${
-                          isActive(item.path)
-                            ? 'bg-red-600 text-white shadow-md'
-                            : 'bg-gray-50 text-gray-700 hover:bg-red-50 hover:text-red-600'
-                        }`}
-                      >
-                        {item.icon}
-                        <span>{item.name}</span>
-                      </Link>
-                    ))}
+                    {navigationItems.map((item) => {
+                      if (item.external) {
+                        return (
+                          <a
+                            key={item.path}
+                            href={item.path}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center gap-3 p-4 rounded-xl text-sm font-medium transition-all duration-200 bg-gray-50 text-gray-700 hover:bg-red-50 hover:text-red-600"
+                          >
+                            {item.icon}
+                            <span>{item.name}</span>
+                          </a>
+                        );
+                      }
+                      return (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          onClick={() => setIsOpen(false)}
+                          className={`flex items-center gap-3 p-4 rounded-xl text-sm font-medium transition-all duration-200 ${
+                            isActive(item.path)
+                              ? 'bg-red-600 text-white shadow-md'
+                              : 'bg-gray-50 text-gray-700 hover:bg-red-50 hover:text-red-600'
+                          }`}
+                        >
+                          {item.icon}
+                          <span>{item.name}</span>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
 
