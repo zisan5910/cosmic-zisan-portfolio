@@ -65,11 +65,11 @@ const Home = () => {
       title: 'জরুরি তথ্য',
       description: 'রক্তের জরুরি প্রয়োজনে যোগাযোগ করুন',
       icon: <Phone className="h-5 w-5 text-red-600" />,
-      content: '০১৭২২-৫২৮১৬৪'
+      content: '০১৭২২-৫২৮১৬ৄ'
     },
     {
       title: 'সেবার সময়',
-      description: '২ৄ ঘণ্টা সেবা প্রদান',
+      description: '২৪ ঘণ্টা সেবা প্রদান',
       icon: <Clock className="h-5 w-5 text-blue-600" />,
       content: '২৪/৭ উপলব্ধ'
     },
@@ -94,11 +94,11 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             {/* Logo */}
-            <div className="w-20 h-20 mx-auto mb-6 bg-white rounded-full shadow-lg flex items-center justify-center">
+            <div className="w-28 h-28 mx-auto mb-6 flex items-center justify-center">
               <img 
                 src="https://i.postimg.cc/pVmRddDC/bobdo-removebg-preview.png" 
                 alt="BOBDO Logo" 
-                className="h-12 w-12 object-contain"
+                className="h-24 w-24 object-contain"
               />
             </div>
             
@@ -214,33 +214,37 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <Card className="shadow-md hover:shadow-lg transition-shadow border-l-4 border-l-red-600">
-              <CardContent className="p-6 text-center">
-                <Phone className="h-8 w-8 text-red-600 mx-auto mb-3" />
-                <h3 className="font-semibold text-gray-900 mb-2">জরুরি হটলাইন</h3>  
-                <a
-                  href="tel:01722528164"
-                  className="text-red-600 hover:text-red-700 font-medium text-lg block mb-2"
-                >
-                  ০১৭২২-৫২৮১৬৪
-                </a>
-                <p className="text-sm text-gray-600">২৪ ঘণ্টা সেবা</p>
-              </CardContent>
-            </Card>
+            <a
+              href="tel:01722528164"
+              className="block transform transition-all duration-200 hover:scale-105"
+            >
+              <Card className="shadow-md hover:shadow-lg transition-shadow border-l-4 border-l-red-600 h-full cursor-pointer">
+                <CardContent className="p-6 text-center">
+                  <Phone className="h-8 w-8 text-red-600 mx-auto mb-3" />
+                  <h3 className="font-semibold text-gray-900 mb-2">জরুরি হটলাইন</h3>  
+                  <p className="text-red-600 hover:text-red-700 font-medium text-lg mb-2">
+                    ০১৭২২-৫২৮১৬৪
+                  </p>
+                  <p className="text-sm text-gray-600">২৪ ঘণ্টা সেবা</p>
+                </CardContent>
+              </Card>
+            </a>
             
-            <Card className="shadow-md hover:shadow-lg transition-shadow border-l-4 border-l-red-600">
-              <CardContent className="p-6 text-center">
-                <Mail className="h-8 w-8 text-red-600 mx-auto mb-3" />
-                <h3 className="font-semibold text-gray-900 mb-2">ইমেইল</h3>
-                <a
-                  href="mailto:bobdo5800@gmail.com"
-                  className="text-red-600 hover:text-red-700 font-medium block mb-2"
-                >
-                  bobdo5800@gmail.com
-                </a>
-                <p className="text-sm text-gray-600">তাৎক্ষণিক উত্তর</p>
-              </CardContent>
-            </Card>
+            <a
+              href="mailto:bobdo5800@gmail.com"
+              className="block transform transition-all duration-200 hover:scale-105"
+            >
+              <Card className="shadow-md hover:shadow-lg transition-shadow border-l-4 border-l-red-600 h-full cursor-pointer">
+                <CardContent className="p-6 text-center">
+                  <Mail className="h-8 w-8 text-red-600 mx-auto mb-3" />
+                  <h3 className="font-semibold text-gray-900 mb-2">ইমেইল</h3>
+                  <p className="text-red-600 hover:text-red-700 font-medium mb-2">
+                    bobdo5800@gmail.com
+                  </p>
+                  <p className="text-sm text-gray-600">তাৎক্ষণিক উত্তর</p>
+                </CardContent>
+              </Card>
+            </a>
           </div>
         </div>
       </section>
